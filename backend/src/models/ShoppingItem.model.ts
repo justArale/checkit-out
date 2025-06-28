@@ -1,11 +1,17 @@
+import { ObjectId } from "mongoose";
+
 const { Schema, model } = require("mongoose");
+
+// Went with `interface` over `type` here — it's cleaner for object models, supports declaration merging, and is future-proof for potential extensions.
+export interface ShoppingItem {
+  _id: ObjectId;
+  name: string;
+  bought: boolean;
+  createdAt: Date;
+}
 
 const shoppingItemSchema = new Schema(
   {
-    _id: {
-      type: String,
-      required: true,
-    },
     name: {
       type: String,
       required: [true, "Name is required."],
