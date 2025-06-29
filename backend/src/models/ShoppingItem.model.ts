@@ -1,6 +1,4 @@
-import { ObjectId } from "mongoose";
-
-const { Schema, model } = require("mongoose");
+import { Schema, model, ObjectId } from "mongoose";
 
 // Went with `interface` over `type` here — it's cleaner for object models, supports declaration merging, and is future-proof for potential extensions.
 export interface ShoppingItem {
@@ -26,6 +24,8 @@ const shoppingItemSchema = new Schema(
   }
 );
 
-const ShoppingItem = model("ShoppingItem", shoppingItemSchema);
-
-module.exports = ShoppingItem;
+const ShoppingItemModel = model<ShoppingItem>(
+  "ShoppingItem",
+  shoppingItemSchema
+);
+export default ShoppingItemModel;
