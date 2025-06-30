@@ -30,9 +30,7 @@ export const getAllShoppingItems = async () => {
 };
 
 // Create a new shopping item
-export const createShoppingItem = async (
-  name: ShoppingItemType
-): Promise<void> => {
+export const createShoppingItem = async (name: string): Promise<void> => {
   try {
     const response = await API.post(`/api/items`, name);
     return response.data;
@@ -49,7 +47,7 @@ export const createShoppingItem = async (
 // Update an existing shopping item
 export const updateShoppingItem = async (
   id: string,
-  bought: Partial<ShoppingItemType>
+  bought: boolean
 ): Promise<void> => {
   try {
     const response = await API.put(`/api/items/${id}`, bought);
@@ -65,9 +63,7 @@ export const updateShoppingItem = async (
 };
 
 // Delete a shopping item
-export const deleteShoppingItem = async (
-  id: ShoppingItemType
-): Promise<void> => {
+export const deleteShoppingItem = async (id: string): Promise<void> => {
   try {
     const response = await API.delete(`/api/items/${id}`);
     return response.data;
