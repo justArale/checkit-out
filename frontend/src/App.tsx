@@ -1,14 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import DashboradPage from "./pages/DashboradPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      <h4>Checkit Out!</h4>
+      <Header />
       <Routes>
         <Route path="/" element={<DashboradPage />} />
         {/* Add more routes here as needed */}
       </Routes>
+      <Footer />
     </>
   );
 }
