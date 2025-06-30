@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer: React.FC = () => {
-  return <div>Footer</div>;
+  return <div>Made with ♡ by Arale</div>;
 };
 
 export default Footer;
