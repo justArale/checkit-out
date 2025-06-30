@@ -4,6 +4,21 @@ import ShoppingItem from "../models/ShoppingItem.model";
 
 const router = Router();
 
+// Middleware to validate ObjectId
+import { Request, Response, NextFunction } from "express";
+const validateObjectId: RequestHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(400).json({ error: "Invalid item ID." });
+    return;
+  }
+  next();
+};
+
 // GET /items - Retrieve all shopping items
 router.get("/items", async (_req, res, _next) => {
   try {
@@ -37,15 +52,10 @@ router.post("/items", (async (req, res) => {
 }) as RequestHandler);
 
 // PUT /items/:id - Updates the "bought" status of a shopping item
-router.put("/items/:id", (async (req, res) => {
+router.put("/items/:id", validateObjectId, (async (req, res) => {
   const { id } = req.params;
   const { bought } = req.body;
   try {
-    // Validate the ID format
-    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "Invalid item ID." });
-    }
-
     // Validate the "bought" field
     if (typeof bought !== "boolean") {
       return res.status(400).json({ error: "Invalid 'bought' status." });
@@ -70,13 +80,9 @@ router.put("/items/:id", (async (req, res) => {
 }) as RequestHandler);
 
 // DELETE /items/:id - Deletes a shopping item
-router.delete("/items/:id", (async (req, res) => {
+router.delete("/items/:id", validateObjectId, (async (req, res) => {
   const { id } = req.params;
   try {
-    // Validate the ID format
-    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(400).json({ error: "Invalid item ID." });
-    }
     // Delete the item
     const deletedItem = await ShoppingItem.findByIdAndDelete(id);
     if (!deletedItem) {
