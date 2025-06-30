@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { getAllShoppingItems } from "../services/shoppingItem.service";
-import type { ShoppingItemType } from "../services/shoppingItem.service";
+import type { ShoppingItemType } from "../interfaces/shoppingItem.interface";
 import ShoppingItemForm from "../components/ShoppingItemForm";
 import ShoppingItemList from "../components/ShoppingItemList";
 

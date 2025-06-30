@@ -1,5 +1,5 @@
 import React from "react";
-import type { ShoppingItemType } from "../services/shoppingItem.service";
+import type { ShoppingItemType } from "../interfaces/shoppingItem.interface";
 import ShoppingItemCard from "./ShoppingItemCard";
 
 interface Props {
