@@ -1,7 +1,12 @@
 import React from "react";
+import ShoppingItemForm from "../components/ShoppingItemForm";
 
 const DashboradPage: React.FC = () => {
-  return <div>React.FC</div>;
+  return (
+    <>
+      <ShoppingItemForm />
+    </>
+  );
 };
 
 export default DashboradPage;

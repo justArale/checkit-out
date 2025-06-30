@@ -30,9 +30,11 @@ export const getAllShoppingItems = async () => {
 };
 
 // Create a new shopping item
-export const createShoppingItem = async (name: string): Promise<void> => {
+export const createShoppingItem = async (item: {
+  name: string;
+}): Promise<void> => {
   try {
-    const response = await API.post(`/api/items`, name);
+    const response = await API.post(`/api/items`, item);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
