@@ -2,7 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { createShoppingItem } from "../services/shoppingItem.service";
 
-const ShoppingItemForm: React.FC = () => {
+interface Props {
+  onItemAdded: () => void;
+}
+
+const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
   const [itemName, setItemName] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -16,6 +20,9 @@ const ShoppingItemForm: React.FC = () => {
     createShoppingItem(newItem)
       .then(() => {
         console.log("Item created successfully");
+      })
+      .then(() => {
+        onItemAdded(); // Call the callback to refresh the item list
       })
       .catch((error) => {
         console.error("Error creating item:", error);

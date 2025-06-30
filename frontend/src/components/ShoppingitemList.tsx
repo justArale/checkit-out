@@ -1,19 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { getAllShoppingItems } from "../services/shoppingItem.service";
-import type { ShoppingItemType } from "../services/shoppingItem.service";
 
-const ShoppingItemList: React.FC = () => {
-  const [items, setItems] = useState<ShoppingItemType[]>([]);
-
-  useEffect(() => {
-    getAllShoppingItems()
-      .then((data) => setItems(data.items))
-      .catch((error) => {
-        console.error("Error fetching items:", error);
-      });
-  }, []);
-
+interface Props {
+  items: { _id: string; name: string }[];
+}
+const ShoppingItemList: React.FC<Props> = ({ items }) => {
   if (items.length === 0) {
     return <div>Your list is empty</div>;
   }
