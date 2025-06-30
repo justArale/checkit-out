@@ -1,7 +1,8 @@
 import { Router, RequestHandler } from "express";
+import mongoose from "mongoose";
+import ShoppingItem from "../models/ShoppingItem.model";
 
 const router = Router();
-import ShoppingItem from "../models/ShoppingItem.model";
 
 // GET /items - Retrieve all shopping items
 router.get("/items", async (_req, res, _next) => {
@@ -35,29 +36,57 @@ router.post("/items", (async (req, res) => {
   }
 }) as RequestHandler);
 
+// PUT /items/:id - Updates the "bought" status of a shopping item
+router.put("/items/:id", (async (req, res) => {
+  const { id } = req.params;
+  const { bought } = req.body;
+  try {
+    // Validate the ID format
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid item ID." });
+    }
+
+    // Validate the "bought" field
+    if (typeof bought !== "boolean") {
+      return res.status(400).json({ error: "Invalid 'bought' status." });
+    }
+
+    // Update the item
+    const updatedItem = await ShoppingItem.findByIdAndUpdate(
+      id,
+      { bought },
+      { new: true }
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ error: "Item not found." });
+    }
+
+    res.json({ message: "Item updated", item: updatedItem });
+  } catch (error) {
+    console.error("Error updating item:", error);
+    res.status(500).json({ error: "Failed to update item." });
+  }
+}) as RequestHandler);
+
+// DELETE /items/:id - Deletes a shopping item
+router.delete("/items/:id", (async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Validate the ID format
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid item ID." });
+    }
+    // Delete the item
+    const deletedItem = await ShoppingItem.findByIdAndDelete(id);
+    if (!deletedItem) {
+      return res.status(404).json({ error: "Item not found." });
+    }
+    res.json({ message: "Item deleted" });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    res.status(500).json({ error: "Failed to delete item." });
+  }
+}) as RequestHandler);
+
 export default router;
-
-/* ### Endpunkte:
-
-- `GET /items` - DONE
-    
-    ➜ Gibt die Einkaufsliste zurück
-    
-- `POST /items` - DONE
-    
-    ➜ Fügt einen neuen Eintrag hinzu
-    
-    **Body:** `{ name: string }`
-    
-- `PUT /items/:id`
-    
-    ➜ Aktualisiert den „gekauft“-Status
-    
-    **Body:** `{ bought: boolean }`
-    
-- `DELETE /items/:id`
-    
-    ➜ Löscht einen Eintrag
-    
-
-### */
