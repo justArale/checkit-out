@@ -1,7 +1,7 @@
 import React from "react";
 
-const ShoppingitemList: React.FC = () => {
-  return <div>ShoppingitemList</div>;
+const ShoppingItemList: React.FC = () => {
+  return <div>ShoppingItemList</div>;
 };
 
-export default ShoppingitemList;
+export default ShoppingItemList;
