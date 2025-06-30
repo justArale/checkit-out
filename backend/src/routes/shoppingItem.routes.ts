@@ -1,23 +1,8 @@
 import { Router, RequestHandler } from "express";
-import mongoose from "mongoose";
 import ShoppingItem from "../models/ShoppingItem.model";
+import { validateObjectId } from "../middleware/validateObjectId";
 
 const router = Router();
-
-// Middleware to validate ObjectId
-import { Request, Response, NextFunction } from "express";
-const validateObjectId: RequestHandler = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({ error: "Invalid item ID." });
-    return;
-  }
-  next();
-};
 
 // GET /items - Retrieve all shopping items
 router.get("/items", async (_req, res, _next) => {
@@ -39,7 +24,6 @@ router.post("/items", (async (req, res) => {
     if (!name || typeof name !== "string" || name.trim() === "") {
       return res.status(400).json({ error: "Item name is required." });
     }
-
     // Creates a new shopping item (emojis are valid unicode strings and fully supported)
     const newShoppingItem = await ShoppingItem.create({
       name,
