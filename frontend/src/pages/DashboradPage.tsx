@@ -20,10 +20,10 @@ const DashboradPage: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="componentBox">
       <ShoppingItemForm onItemAdded={fetchItems} />
       <ShoppingItemList items={items} onItemChanged={fetchItems} />
-    </>
+    </div>
   );
 };
 
