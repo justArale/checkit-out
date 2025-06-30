@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { ShoppingItem } from "../types/shoppingItem.types";
+import { ShoppingItemType } from "../types/shoppingItem.types";
 
 const shoppingItemSchema: Schema = new Schema(
   {
@@ -17,4 +17,4 @@ const shoppingItemSchema: Schema = new Schema(
   }
 );
 
-export default model<ShoppingItem>("ShoppingItem", shoppingItemSchema);
+export default model<ShoppingItemType>("ShoppingItem", shoppingItemSchema);
