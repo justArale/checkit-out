@@ -22,11 +22,9 @@ const DashboradPage: React.FC = () => {
   return (
     <>
       <ShoppingItemForm onItemAdded={fetchItems} />
-      <ShoppingItemList items={items} />
+      <ShoppingItemList items={items} onItemChanged={fetchItems} />
     </>
   );
 };
 
 export default DashboradPage;
-
-// onListChanged

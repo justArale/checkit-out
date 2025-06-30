@@ -1,9 +1,12 @@
 import React from "react";
+import type { ShoppingItemType } from "../services/shoppingItem.service";
+import ShoppingItemCard from "./ShoppingItemCard";
 
 interface Props {
-  items: { _id: string; name: string }[];
+  items: ShoppingItemType[];
+  onItemChanged: () => void;
 }
-const ShoppingItemList: React.FC<Props> = ({ items }) => {
+const ShoppingItemList: React.FC<Props> = ({ items, onItemChanged }) => {
   if (items.length === 0) {
     return <div>Your list is empty</div>;
   }
@@ -11,7 +14,9 @@ const ShoppingItemList: React.FC<Props> = ({ items }) => {
   return (
     <div>
       {items.map((item) => (
-        <div key={item._id}>{item.name}</div>
+        <div key={item._id}>
+          <ShoppingItemCard item={item} onItemChanged={onItemChanged} />
+        </div>
       ))}
     </div>
   );

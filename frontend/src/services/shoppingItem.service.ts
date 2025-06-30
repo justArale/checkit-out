@@ -49,10 +49,10 @@ export const createShoppingItem = async (item: {
 // Update an existing shopping item
 export const updateShoppingItem = async (
   id: string,
-  bought: boolean
+  item: { bought: boolean }
 ): Promise<void> => {
   try {
-    const response = await API.put(`/api/items/${id}`, bought);
+    const response = await API.put(`/api/items/${id}`, item);
     return response.data;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
