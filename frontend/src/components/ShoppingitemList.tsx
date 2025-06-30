@@ -10,7 +10,7 @@ interface Props {
 const ShoppingItemList: React.FC<Props> = ({ items, onItemChanged }) => {
   if (items.length === 0) {
     return (
-      <div className="shoppingItemList">
+      <div className="shoppingItemListEmpty">
         <img src={EmptyList} alt="Empty List Icon" />
         <p className="bodyfontMedium secondaryFontColor">Your list is empty</p>
       </div>
@@ -18,7 +18,7 @@ const ShoppingItemList: React.FC<Props> = ({ items, onItemChanged }) => {
   }
 
   return (
-    <div>
+    <div className="shoppingItemList">
       {items.map((item) => (
         <div key={item._id}>
           <ShoppingItemCard item={item} onItemChanged={onItemChanged} />
