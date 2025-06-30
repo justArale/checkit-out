@@ -1,14 +1,7 @@
-import { Schema, model, ObjectId } from "mongoose";
+import { Schema, model } from "mongoose";
+import { ShoppingItem } from "../types/shoppingItem.types";
 
-// Went with `interface` over `type` here — it's cleaner for object models, supports declaration merging, and is future-proof for potential extensions.
-export interface ShoppingItem {
-  _id: ObjectId;
-  name: string;
-  bought: boolean;
-  createdAt: Date;
-}
-
-const shoppingItemSchema = new Schema(
+const shoppingItemSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -24,8 +17,4 @@ const shoppingItemSchema = new Schema(
   }
 );
 
-const ShoppingItemModel = model<ShoppingItem>(
-  "ShoppingItem",
-  shoppingItemSchema
-);
-export default ShoppingItemModel;
+export default model<ShoppingItem>("ShoppingItem", shoppingItemSchema);
