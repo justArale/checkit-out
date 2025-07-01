@@ -1,6 +1,7 @@
 @use "../base/variables.sass" as *;
 
 .shoppingItemCardContainer
+    background-color: $second-background-color
     width: 100%
 
 .shoppingItemCard
@@ -11,6 +12,9 @@
     padding: 16px 24px
     width: 100%
     position: relative
+
+    &:hover
+        background-color: rgba(0, 0, 0, 0.03)
 
     &:hover .deleteButton
         opacity: 1
