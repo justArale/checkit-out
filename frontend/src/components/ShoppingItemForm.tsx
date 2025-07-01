@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { createShoppingItem } from "../services/shoppingItem.service";
+import Add from "../assets/icon/Add.svg";
 
 interface Props {
   onItemAdded: () => void;
@@ -32,8 +33,8 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
+    <form onSubmit={handleSubmit} className="inputFormContainer">
+      <div className="inputFormWrapper">
         <input
           type="text"
           id="itemName"
@@ -41,9 +42,14 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
           onChange={(e) => setItemName(e.target.value)}
           placeholder="Add new item"
           required
+          className="inputForm bodyfontRegular"
         />
       </div>
-      <button type="submit">Add</button>
+      {itemName.trim() !== "" && (
+        <button type="submit" className="addButton">
+          <img src={Add} alt="Add" />
+        </button>
+      )}
     </form>
   );
 };
