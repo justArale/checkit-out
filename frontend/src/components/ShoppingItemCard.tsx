@@ -1,4 +1,5 @@
 import React from "react";
+import { useSwipeable } from "react-swipeable";
 import type { ShoppingItemType } from "../interfaces/shoppingItem.interface";
 import {
   deleteShoppingItem,
@@ -25,8 +26,23 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
       .catch((err) => console.error("Update failed:", err));
   };
 
+  // Handler for swipe feature
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      // Delete the item on swipe left
+      handleDelete(item._id);
+    },
+    onSwipedRight: () => {
+      // Toggle bought status on swipe right
+      handleToggleBought(item);
+    },
+    delta: parseInt(import.meta.env.VITE_DELTA || "30"), // Threshold for swipe detection, 30 is ideal for mobile
+    //Swipe with the mouse
+    trackMouse: true,
+  });
+
   return (
-    <div className="shoppingItemCard">
+    <div {...handlers} className="shoppingItemCard">
       <button
         className={`checkbox ${item.bought ? "checked" : ""}`}
         onClick={() => handleToggleBought(item)}
