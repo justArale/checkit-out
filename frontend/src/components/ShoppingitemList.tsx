@@ -1,7 +1,7 @@
 import React from "react";
 import type { ShoppingItemType } from "../interfaces/shoppingItem.interface";
 import ShoppingItemCard from "./ShoppingItemCard";
-import EmptyList from "../assets/icon/EmptyList.svg";
+import EmptyList from "./icons/EmptyList";
 
 interface Props {
   items: ShoppingItemType[];
@@ -11,7 +11,7 @@ const ShoppingItemList: React.FC<Props> = ({ items, onItemChanged }) => {
   if (items.length === 0) {
     return (
       <div className="shoppingItemListEmpty">
-        <img src={EmptyList} alt="Empty List Icon" />
+        <EmptyList className="emptyListIcon" />
         <p className="bodyfontMedium secondaryFontColor">Your list is empty</p>
       </div>
     );

@@ -4,8 +4,8 @@ import {
   deleteShoppingItem,
   updateShoppingItem,
 } from "../services/shoppingItem.service";
-import DeleteIcon from "../assets/icon/delete.svg";
-import CheckedIcon from "../assets/icon/Checked.svg";
+import Delete from "./icons/Delete";
+import Checked from "./icons/Checked";
 
 interface Props {
   item: ShoppingItemType;
@@ -32,7 +32,7 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
         onClick={() => handleToggleBought(item)}
         aria-label="Toggle bought"
       >
-        {item.bought && <img src={CheckedIcon} alt="Checked" />}
+        {item.bought && <Checked className="checkedIcon" />}
       </button>
 
       <p
@@ -45,7 +45,7 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
         {item.name}
       </p>
       <button onClick={() => handleDelete(item._id)} className="deleteButton">
-        <img src={DeleteIcon} alt="Delete Icon" />
+        <Delete className="deleteIcon" />
       </button>
     </div>
   );

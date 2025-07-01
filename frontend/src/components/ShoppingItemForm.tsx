@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { createShoppingItem } from "../services/shoppingItem.service";
-import Add from "../assets/icon/Add.svg";
+import Add from "./icons/Add";
 
 interface Props {
   onItemAdded: () => void;
@@ -47,7 +47,7 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
       </div>
       {itemName.trim() !== "" && (
         <button type="submit" className="addButton">
-          <img src={Add} alt="Add" />
+          <Add className="addIcon" />
         </button>
       )}
     </form>

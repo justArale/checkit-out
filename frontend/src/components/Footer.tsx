@@ -1,5 +1,5 @@
 import React from "react";
-import HeartUnfilled from "../assets/icon/HeartUnfilled.svg";
+import HeartUnfilled from "./icons/HeardUnfilled";
 
 const Footer: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
       <p className="labelfontRegular secondaryFontColor footerInline">
         Made with{" "}
         <span>
-          <img src={HeartUnfilled} className="iconWrapper" />
+          <HeartUnfilled className="heardUnfilledIcon" />
         </span>{" "}
         by Arale
       </p>
