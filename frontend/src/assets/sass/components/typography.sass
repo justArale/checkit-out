@@ -1,0 +1,34 @@
+@use "../base/variables.sass" as *;
+
+.pagetitle
+    font-size: $font-size-large
+    font-weight: $font-weight-regular
+    line-height: normal
+    margin: 0
+
+
+.bodyfontMedium
+    font-size: $font-size-medium
+    font-weight: $font-weight-medium
+    line-height: 1.25em
+    margin: 0
+
+
+.bodyfontRegular
+    @extend .bodyfontMedium
+    font-weight: $font-weight-regular
+
+
+.labelfontMedium
+    font-size: $font-size-small
+    font-weight: $font-weight-medium
+    line-height: 1em
+    margin: 0
+
+.labelfontRegular
+    @extend .labelfontMedium
+    font-weight: $font-weight-regular
+    line-height: normal
+
+.checked
+  text-decoration: line-through
