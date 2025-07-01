@@ -1,6 +1,7 @@
 # prod
 dist/
 wrangler.toml
+/frontend/.vite/
 
 # dev
 .yarn/
