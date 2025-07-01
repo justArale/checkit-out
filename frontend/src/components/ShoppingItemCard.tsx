@@ -4,6 +4,8 @@ import {
   deleteShoppingItem,
   updateShoppingItem,
 } from "../services/shoppingItem.service";
+import Delete from "./icons/Delete";
+import Checked from "./icons/Checked";
 
 interface Props {
   item: ShoppingItemType;
@@ -24,13 +26,27 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
   };
 
   return (
-    <div>
-      <p>{item.name}</p>
-      <p>{item.bought ? "bought" : "not bought"}</p>
-      <button onClick={() => handleToggleBought(item)}>
-        {item.bought ? "Unmark as Bought" : "Mark as Bought"}
+    <div className="shoppingItemCard">
+      <button
+        className={`checkbox ${item.bought ? "checked" : ""}`}
+        onClick={() => handleToggleBought(item)}
+        aria-label="Toggle bought"
+      >
+        {item.bought && <Checked className="checkedIcon" />}
       </button>
-      <button onClick={() => handleDelete(item._id)}>Delete</button>
+
+      <p
+        className={`itemName ${
+          item.bought
+            ? "bodyfontRegular checked secondaryFontColor"
+            : "bodyfontMedium"
+        }`}
+      >
+        {item.name}
+      </p>
+      <button onClick={() => handleDelete(item._id)} className="deleteButton">
+        <Delete className="deleteIcon" />
+      </button>
     </div>
   );
 };

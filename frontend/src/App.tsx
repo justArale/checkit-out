@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
+    <div className="page">
       <Header />
       <Routes>
         <Route path="/" element={<DashboradPage />} />
@@ -14,7 +14,7 @@ function App() {
         {/* Add more routes here as needed */}
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
