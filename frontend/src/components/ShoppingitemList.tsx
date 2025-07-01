@@ -20,7 +20,7 @@ const ShoppingItemList: React.FC<Props> = ({ items, onItemChanged }) => {
   return (
     <div className="shoppingItemList">
       {items.map((item) => (
-        <div key={item._id}>
+        <div key={item._id} className="shoppingItemCardContainer">
           <ShoppingItemCard item={item} onItemChanged={onItemChanged} />
         </div>
       ))}
