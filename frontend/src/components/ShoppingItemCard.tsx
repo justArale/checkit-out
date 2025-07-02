@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import type { ShoppingItemType } from "../interfaces/shoppingItem.interface";
 import {
@@ -16,6 +16,8 @@ interface Props {
 }
 
 const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
+  const [deltaX, setDeltaX] = useState(0);
+
   const handleDelete = (id: string) => {
     deleteShoppingItem(id)
       .then(onItemChanged)
@@ -30,14 +32,21 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
 
   // Handler for swipe feature
   const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      // Delete the item on swipe left
-      handleDelete(item._id);
+    onSwiping: ({ deltaX }) => {
+      // Limit to max ±100px, feels smoother
+      setDeltaX(Math.max(-100, Math.min(100, deltaX)));
     },
-    onSwipedRight: () => {
-      // Toggle bought status on swipe right
-      handleToggleBought(item);
+    onSwiped: ({ dir }) => {
+      if (dir === "Left" && deltaX < -30) {
+        // Delete the item on swipe left
+        handleDelete(item._id);
+      } else if (dir === "Right" && deltaX > 30) {
+        // Toggle bought status on swipe right
+        handleToggleBought(item);
+      }
+      setDeltaX(0);
     },
+
     delta: parseInt(import.meta.env.VITE_DELTA || "30"), // Threshold for swipe detection, 30 is ideal for mobile
     //Swipe with the mouse
     trackMouse: true,
@@ -62,7 +71,14 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
           <span className="labelfontMedium">delete</span>
         </div>
       </div>
-      <div {...handlers} className="shoppingItemCard">
+      <div
+        {...handlers}
+        className="shoppingItemCard"
+        style={{
+          transform: `translateX(${deltaX}px)`,
+          transition: deltaX === 0 ? "transform 0.3s ease-out" : "none",
+        }}
+      >
         <button
           className={`checkbox ${item.bought ? "checked" : ""}`}
           onClick={() => handleToggleBought(item)}
