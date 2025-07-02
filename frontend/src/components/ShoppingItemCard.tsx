@@ -32,11 +32,11 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
 
   // Handler for swipe feature
   const handlers = useSwipeable({
-    onSwiping: ({ deltaX }) => {
+    onSwiping: ({ deltaX }: { deltaX: number }) => {
       // Limit to max ±100px, feels smoother
       setDeltaX(Math.max(-100, Math.min(100, deltaX)));
     },
-    onSwiped: ({ dir }) => {
+    onSwiped: ({ dir }: { dir: string }) => {
       if (dir === "Left" && deltaX < -30) {
         // Delete the item on swipe left
         handleDelete(item._id);
