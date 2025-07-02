@@ -2,16 +2,47 @@
 
 .shoppingItemCardContainer
     background-color: $second-background-color
+    position: relative
     width: 100%
+    height: 100%
+
+.swipeBackground
+    position: absolute
+    inset: 0 // Shortcut for top:0; right:0; bottom:0; left:0;
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 24px
+    box-sizing: border-box
+    background-image: linear-gradient(
+    to right,
+    $color-action 0%,
+    $color-action 50%,
+    $color-aware 50%,
+    $color-aware 100%
+  )
+    z-index: 0 // Behind swipe card element (which has z-index: 1)
+
+.swipeLabel
+    display: flex
+    flex-direction: column
+    gap: 4px
+    align-items: center
+    justify-content: center
+    width: 32px
+    height: 32px
 
 .shoppingItemCard
+    position: relative
+    z-index: 1
+    background-color: $second-background-color !important // Force consistent background color otherwise it shows the swipe background
     display: flex
     align-items: center
     gap: 24px
     box-sizing: border-box
     padding: 16px 24px
     width: 100%
-    position: relative
+    user-select: none // To avoid text selection during swipe
 
     &:hover
         background-color: rgba(0, 0, 0, 0.03)
@@ -37,7 +68,7 @@
         background-color: $color-black
 
 .itemName
-    flex: 1
+    flex: 1 // Takes available space so text scales properly
 
 // Always render delete button but hide it with opacity.
 // This avoids layout shift, enables keyboard focus, and allows smooth transitions.
@@ -45,7 +76,7 @@
     position: absolute
     right: 24px
     top: 50%
-    transform: translateY(-50%)
+    transform: translateY(-50%) // Vertically centers the button
     width: 32px
     height: 32px
     display: flex
