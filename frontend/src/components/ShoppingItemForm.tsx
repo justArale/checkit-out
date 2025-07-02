@@ -37,6 +37,7 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
       <div className="inputFormWrapper">
         <input
           type="text"
+          enterKeyHint="send"
           id="itemName"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
@@ -45,11 +46,15 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
           className="inputForm bodyfontRegular"
         />
       </div>
-      {itemName.trim() !== "" && (
-        <button type="submit" className="addButton">
-          <Add className="addIcon" />
-        </button>
-      )}
+
+      <button
+        type="submit"
+        className={`addButton ${
+          itemName.trim() !== "" ? "addButtonEnabled" : "addButtonDisabled"
+        }`}
+      >
+        <Add className="addIcon" />
+      </button>
     </form>
   );
 };

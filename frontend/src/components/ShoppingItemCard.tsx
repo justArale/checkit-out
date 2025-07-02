@@ -57,9 +57,9 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
       <div className="swipeBackground">
         <div className="swipeLabel">
           {item.bought ? (
-            <Uncheck className="checkIcon" />
+            <Uncheck className="checkIcon" aria-hidden="true" />
           ) : (
-            <Check className="checkIcon" />
+            <Check className="checkIcon" aria-hidden="true" />
           )}
 
           <span className="labelfontMedium">
@@ -67,7 +67,7 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
           </span>
         </div>
         <div className="swipeLabel">
-          <Delete className="deleteIconReverse" />
+          <Delete className="deleteIconReverse" aria-hidden="true" />
           <span className="labelfontMedium">delete</span>
         </div>
       </div>
@@ -82,7 +82,11 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
         <button
           className={`checkbox ${item.bought ? "checked" : ""}`}
           onClick={() => handleToggleBought(item)}
-          aria-label="Toggle bought"
+          aria-label={
+            item.bought
+              ? `Mark ${item.name} as not bought`
+              : `Mark ${item.name} as bought`
+          }
         >
           {item.bought && <Checked className="checkedIcon" />}
         </button>
@@ -96,7 +100,11 @@ const ShoppingItemCard: React.FC<Props> = ({ item, onItemChanged }) => {
         >
           {item.name}
         </p>
-        <button onClick={() => handleDelete(item._id)} className="deleteButton">
+        <button
+          onClick={() => handleDelete(item._id)}
+          className="deleteButton"
+          aria-label={`Delete item ${item.name}`}
+        >
           <Delete className="deleteIcon" />
         </button>
       </div>
