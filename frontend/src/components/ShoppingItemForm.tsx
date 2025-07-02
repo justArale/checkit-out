@@ -37,6 +37,7 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
       <div className="inputFormWrapper">
         <input
           type="text"
+          enterKeyHint="send"
           id="itemName"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
