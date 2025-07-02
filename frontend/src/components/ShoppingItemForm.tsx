@@ -5,9 +5,10 @@ import Add from "./icons/Add";
 
 interface Props {
   onItemAdded: () => void;
+  isLoading: boolean;
 }
 
-const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
+const ShoppingItemForm: React.FC<Props> = ({ onItemAdded, isLoading }) => {
   const [itemName, setItemName] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,9 +42,11 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
           id="itemName"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
-          placeholder="Add new item"
+          placeholder={isLoading ? "Loading..." : "Add new item"}
           required
-          className="inputForm bodyfontRegular"
+          className={`inputForm bodyfontRegular${
+            isLoading ? " isLoading" : ""
+          }`}
         />
       </div>
 
