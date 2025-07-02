@@ -3,15 +3,15 @@ import HeartUnfilled from "./icons/HeardUnfilled";
 
 const Footer: React.FC = () => {
   return (
-    <div className="footer">
+    <footer className="footer" aria-label="Footer">
       <p className="labelfontRegular secondaryFontColor footerInline">
         Made with{" "}
-        <span>
+        <span aria-hidden="true">
           <HeartUnfilled className="heardUnfilledIcon" />
         </span>{" "}
         by Arale
       </p>
-    </div>
+    </footer>
   );
 };
 
