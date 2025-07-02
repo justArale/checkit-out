@@ -31,10 +31,18 @@
     display: flex
     align-items: center
     justify-content: center
-    background-color: $color-action
     border: none
     border-radius: 26px
     cursor: pointer
     box-sizing: border-box
     padding: 0
+
+.addButtonEnabled
+    @extend .addButton
+    background-color: $color-action
+
+.addButtonDisabled
+    @extend .addButton
+    background-color: $third-background-color
+
 

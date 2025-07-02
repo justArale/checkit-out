@@ -45,11 +45,15 @@ const ShoppingItemForm: React.FC<Props> = ({ onItemAdded }) => {
           className="inputForm bodyfontRegular"
         />
       </div>
-      {itemName.trim() !== "" && (
-        <button type="submit" className="addButton">
-          <Add className="addIcon" />
-        </button>
-      )}
+
+      <button
+        type="submit"
+        className={`addButton ${
+          itemName.trim() !== "" ? "addButtonEnabled" : "addButtonDisabled"
+        }`}
+      >
+        <Add className="addIcon" />
+      </button>
     </form>
   );
 };
