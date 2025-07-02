@@ -1,6 +1,6 @@
 # checkit-out
 
-A monorepo project with separate frontend and backend.
+![App Design](./docs/design.webp)
 
 ---
 
