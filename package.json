@@ -12,8 +12,5 @@
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
-  },
-  "dependencies": {
-    "react-swipeable": "^7.0.2"
   }
 }
