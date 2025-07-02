@@ -14,6 +14,7 @@ A monorepo project with separate frontend and backend.
 - [Folder Structure](#folder-structure)
 - [Notes](#notes)
 - [Licence](#licence)
+- [Last Updated](#last-updated)
 
 ---
 
@@ -130,3 +131,9 @@ Workspaces enable easy simultaneous development of both parts.
 ### Licence
 
 This project is licensed under the [MIT License](https://github.com/justArale/checkit-out.git/blob/main/LICENSE).
+
+---
+
+### Last Updated
+
+This README was last updated on [02.07.2025].
